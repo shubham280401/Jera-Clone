@@ -1,0 +1,54 @@
+.sidebar {
+  background-color: #f2f2f2;
+  width: 200px;
+  height: 100vh;
+  position: fixed;
+  top: 50px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar li {
+  padding: 0.5rem;
+  cursor: pointer;
+  width: 100%;
+}
+
+.sidebar li a {
+  text-decoration: none;
+  color: #333;
+  padding: 15px 25px;
+  width: 100%;
+  display: flex;
+  /* position: relative; Enable positioning for the overlay */
+  /* Add transition for smooth color change */
+}
+
+.sidebar li a.active {
+  background-color: rgb(76, 147, 223, 0.3);
+  color: #000;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.275s ease-in-out;
+}
+.icon-placement {
+  /* Assuming "active" class is applied when the link is active */
+  display: flex; /* Ensure flexbox for alignment */
+  align-items: center; /* Vertically align content within */
+  gap: 10px; /* Add the space between icon and text */
+}
+.card-components {
+  margin-left: 210px;
+  list-style: none;
+}
+.menu-item {
+  width: 100%;
+}
