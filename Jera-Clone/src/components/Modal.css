@@ -1,0 +1,27 @@
+.modal-input input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+.modal-input {
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+/* Modal container */
+/* Modal container */
+
+.modal-input textarea {
+  width: calc(100% - 20px); /* Adjust width */
+  padding: 10px;
+
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.create-button-container {
+  display: flex;
+  justify-content: flex-end;
+}

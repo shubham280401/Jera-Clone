@@ -1,41 +1,64 @@
+import { BsFillBookmarkStarFill } from "react-icons/bs";
+import { IoMdCheckbox } from "react-icons/io";
+import { TbAlertSquareFilled } from "react-icons/tb";
+import { BsLightningChargeFill } from "react-icons/bs";
+import { FaEquals } from "react-icons/fa";
 import {
-  FcBiotech,
-  FcTimeline,
-  FcApproval,
-  FcBinoculars,
-  FcClock,
-} from "react-icons/fc";
+  MdOutlineKeyboardDoubleArrowUp,
+  MdOutlineKeyboardArrowUp,
+  MdKeyboardDoubleArrowDown,
+} from "react-icons/md";
 import "./Card.css";
-const Card = ({ name, type, id, points, status }) => {
-  let icon;
-  switch (status) {
-    case "To Do":
-      icon = <FcTimeline />;
-      break;
-    case "In Progress":
-      icon = <FcBiotech />;
-      break;
-    case "Paused":
-      icon = <FcClock />;
-      break;
-    case "In Review":
-      icon = <FcBinoculars />;
-      break;
-    case "Done":
-      icon = <FcApproval />;
-      break;
+const getTypeIcon = (type) => {
+  switch (type) {
+    case "Story":
+      return <BsFillBookmarkStarFill color="green" />;
+    case "Chore":
+      return <IoMdCheckbox color="#4db8ff" />;
+    case "Bug":
+      return <TbAlertSquareFilled color="#ff3300" />;
+    case "Epic":
+      return <BsLightningChargeFill color="#8f00b3" />;
+
     default:
-      icon = null;
-      break;
+      return null;
   }
+};
+
+const getPriorityIcon = (priority) => {
+  switch (priority) {
+    case "Normal":
+      return <FaEquals color="green" />;
+    case "Critical":
+      return <MdOutlineKeyboardDoubleArrowUp color="red" />;
+    case "High":
+      return <MdOutlineKeyboardArrowUp color="orange" />;
+    case "Low":
+      return <MdKeyboardDoubleArrowDown color="blue" />;
+    default:
+      return null;
+  }
+};
+const Card = ({
+  name,
+  type,
+  id,
+  points,
+  status,
+  priority,
+  onClick = () => {},
+}) => {
+  const icon = getTypeIcon(type);
+  const priorityIcon = getPriorityIcon(priority);
+
   return (
-    <div className="card">
+    <div className="card" onClick={onClick}>
       <div className="card-head">
         <div>
           <h3>{name}</h3>
         </div>
-        <div>{type}</div>
         <div>{status}</div>
+        <div>{type}</div>
       </div>
 
       <div className="card-footer">
@@ -43,7 +66,10 @@ const Card = ({ name, type, id, points, status }) => {
           <div>{icon}</div>
           <div>{id}</div>
         </div>
-        <div>{points}</div>
+        <div className="point-priority">
+          <div>{points}</div>
+          <div>{priorityIcon}</div>
+        </div>
       </div>
     </div>
   );
