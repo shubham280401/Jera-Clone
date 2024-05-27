@@ -2,6 +2,8 @@
   border-bottom: 1px solid #817f7f;
   height: 50px;
   padding: 10px;
+  font-size: x-large;
+  font-weight: 600;
   position: fixed;
   display: flex;
   justify-content: space-between;

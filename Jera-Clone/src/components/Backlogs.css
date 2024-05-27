@@ -9,9 +9,16 @@
 
 .backlog-item {
   padding: 10px;
-  border-bottom: 1px solid #ddd;
+  border: 1px solid #ddd;
+  margin-bottom: 1rem;
+  border-radius: 5px;
 }
-
+.backlog-item:first-of-type {
+  margin-top: 1rem;
+}
+.backlog-item :hover {
+  cursor: pointer;
+}
 .backlog-item-header {
   display: flex;
   justify-content: space-between;
