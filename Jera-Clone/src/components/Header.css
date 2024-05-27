@@ -5,9 +5,9 @@
   position: fixed;
   display: flex;
   justify-content: space-between;
-  top: 0; /* Positioned at the top of the viewport */
-  left: 0; /* Aligned to the left edge */
-  width: 100vw; /* Full viewport width */
-  background-color: #fff; /* Light background color */
-  z-index: 10; /* Ensure header stays on top even when scrolling */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  background-color: #fff;
+  z-index: 10;
 }

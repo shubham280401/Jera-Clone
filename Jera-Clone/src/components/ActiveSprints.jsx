@@ -1,7 +1,7 @@
-import React, { useMemo, useState, useEffect } from "react";
+import { useMemo, useState, useEffect } from "react";
 import Card from "./Card";
 import CardModal from "./CardModal";
-import BasicModal from "./BasicModal";
+// import BasicModal from "./BasicModal";
 import "./Card.css";
 import "./Modal.css";
 

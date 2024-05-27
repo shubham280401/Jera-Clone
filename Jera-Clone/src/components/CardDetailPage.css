@@ -1,14 +1,14 @@
 .card-detail-page {
   position: absolute;
-  top: 50px; /* Height of the header */
-  left: 200px; /* Width of the sidebar */
-  width: calc(100% - 200px); /* Full width minus sidebar width */
-  height: calc(100% - 50px); /* Full height minus header height */
+  top: 50px;
+  left: 200px;
+  width: calc(100% - 200px);
+  height: calc(100% - 50px);
   display: flex;
   /* gap: 20px; */
   justify-content: center;
   align-items: flex-start;
-  padding: 20px; /* Optional: Add padding if needed */
+  padding: 20px;
   box-sizing: border-box;
 }
 

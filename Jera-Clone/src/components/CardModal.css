@@ -54,7 +54,7 @@
 .main-content {
   flex: 2;
   padding-right: 20px;
-  overflow-y: auto; /* Make the main content scrollable */
+  overflow-y: auto; 
   max-height: calc(80vh - 60px);
 }
 
@@ -62,7 +62,7 @@
   flex: 1;
   padding-left: 20px;
   border-left: 2px solid #000;
-  overflow-y: auto; /* Make the details content scrollable */
+  overflow-y: auto; 
   max-height: calc(80vh - 60px);
 }
 
@@ -125,9 +125,9 @@
   color: white;
   border: none;
   padding: 5px 10px;
-  width: 100%; /* Ensure buttons are full width */
-  text-align: left; /* Align text to the left */
-  position: relative; /* Required for arrow positioning */
+  width: 100%; 
+  text-align: left; 
+  position: relative; 
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -180,20 +180,20 @@
 .point-container {
   display: flex;
   justify-content: flex-start;
-  align-items: center; /* Align items vertically */
-  margin-top: 10px; /* Add some margin between the container and other elements */
+  align-items: center;
+  margin-top: 10px;
 }
 
 .point-container label {
-  margin-right: 10px; /* Add margin to separate the label from the input field */
+  margin-right: 10px;
 }
 .update-button {
   position: absolute;
-  bottom: 10px; /* Adjust as needed */
+  bottom: 10px;
   right: 10px;
   padding: 8px 16px;
   border-radius: 5px;
-  border: none; /* Adjust as needed */
+  border: none;
 }
 .update-button:hover {
   cursor: pointer;

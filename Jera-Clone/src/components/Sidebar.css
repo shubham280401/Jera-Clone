@@ -27,8 +27,6 @@
   padding: 15px 25px;
   width: 100%;
   display: flex;
-  /* position: relative; Enable positioning for the overlay */
-  /* Add transition for smooth color change */
 }
 
 .sidebar li a.active {
@@ -40,10 +38,9 @@
   transition: background-color 0.275s ease-in-out;
 }
 .icon-placement {
-  /* Assuming "active" class is applied when the link is active */
-  display: flex; /* Ensure flexbox for alignment */
-  align-items: center; /* Vertically align content within */
-  gap: 10px; /* Add the space between icon and text */
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 .card-components {
   margin-left: 210px;

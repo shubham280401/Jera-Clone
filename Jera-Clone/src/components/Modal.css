@@ -10,11 +10,10 @@
   margin-top: 20px;
 }
 
-/* Modal container */
-/* Modal container */
+
 
 .modal-input textarea {
-  width: calc(100% - 20px); /* Adjust width */
+  width: calc(100% - 20px); 
   padding: 10px;
 
   border: 1px solid #ccc;
