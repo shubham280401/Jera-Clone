@@ -97,3 +97,11 @@
   flex-direction: row;
   gap: 4px;
 }
+.card {
+  /* Other styles for the card */
+  transition: transform 0.3s ease;
+}
+
+.card:hover {
+  cursor: pointer;
+}

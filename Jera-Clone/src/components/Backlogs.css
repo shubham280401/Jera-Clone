@@ -12,12 +12,14 @@
   border: 1px solid #ddd;
   margin-bottom: 1rem;
   border-radius: 5px;
+  transition: transform 0.3s ease;
 }
 .backlog-item:first-of-type {
   margin-top: 1rem;
 }
-.backlog-item :hover {
+.backlog-item:hover {
   cursor: pointer;
+  transform: scale(1.03);
 }
 .backlog-item-header {
   display: flex;
