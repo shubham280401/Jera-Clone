@@ -5,6 +5,7 @@
   width: calc(100% - 200px); /* Full width minus sidebar width */
   height: calc(100% - 50px); /* Full height minus header height */
   display: flex;
+  /* gap: 20px; */
   justify-content: center;
   align-items: flex-start;
   padding: 20px; /* Optional: Add padding if needed */
@@ -21,19 +22,56 @@
   display: flex;
   flex-direction: column;
   border-radius: 10px;
-  box-sizing: border-box; /* Include padding in width and height calculation */
+  /* gap: 20px; */
+  box-sizing: border-box;
 }
 
-/* Other styles for card details page */
-.modal-header,
-.modal-content,
-.main-content,
-.details-content,
-.priority-icon,
-.modal-title,
-.modal-description,
-.modal-points,
-.modal-type,
-.copy-button {
-  /* Card detail specific styles */
+.git-branch-container,
+.commit-container {
+  margin-top: 20px;
+}
+
+.git-branch-button,
+.commit-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  width: 100%;
+  text-align: left;
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+.git-branch-button:hover,
+.commit-button:hover {
+  background-color: #0056b3;
+  /* border-radius: 4px; */
+}
+
+.git-branch-input,
+.issue-key-input,
+.commit-sample-input {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f9f9f9;
+}
+
+.arrow {
+  transition: transform 0.2s;
+}
+
+.arrow.down {
+  transform: rotate(180deg);
+}
+.details-content p {
+  margin-bottom: 10px;
 }

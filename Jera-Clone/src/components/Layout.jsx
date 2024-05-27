@@ -2,11 +2,11 @@ import Sidebar from "./Sidebar";
 import Header from "./Header";
 import "./Sidebar.css";
 
-const Layout = ({ children }) => {
+const Layout = ({ children, setIssues }) => {
   console.log("Name");
   return (
     <div>
-      <Header />
+      <Header setIssues={setIssues} />
       <Sidebar />
       <div className="card-components">{children}</div>
     </div>

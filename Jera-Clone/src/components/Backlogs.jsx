@@ -1,96 +1,84 @@
-import Card from "./Card";
-import "./Card.css";
-const backlogData = [
-  {
-    name: "Fix login page layout",
-    status: "In Progress",
-    id: "PROJ-123",
-    type: "Bug",
-    points: 5,
-  },
-  {
-    name: "Implement user profile feature",
-    status: "To Do",
-    id: "PROJ-124",
-    type: "Feature",
-    points: 8,
-  },
-  {
-    name: "Update database schema",
-    status: "Done",
-    id: "PROJ-125",
-    type: "Task",
-    points: 3,
-  },
-  {
-    name: "Fix navigation bar styling",
-    status: "In Progress",
-    id: "PROJ-126",
-    type: "Bug",
-    points: 5,
-  },
-  {
-    name: "Create API documentation",
-    status: "To Do",
-    id: "PROJ-127",
-    type: "Task",
-    points: 2,
-  },
-  {
-    name: "Add search functionality",
-    status: "To Do",
-    id: "PROJ-128",
-    type: "Feature",
-    points: 13,
-  },
-  {
-    name: "Fix broken links on homepage",
-    status: "In Progress",
-    id: "PROJ-129",
-    type: "Bug",
-    points: 5,
-  },
-  {
-    name: "Refactor backend code",
-    status: "To Do",
-    id: "PROJ-130",
-    type: "Task",
-    points: 8,
-  },
-  {
-    name: "Implement user authentication",
-    status: "Done",
-    id: "PROJ-131",
-    type: "Feature",
-    points: 10,
-  },
-  {
-    name: "Optimize front-end performance",
-    status: "In Progress",
-    id: "PROJ-132",
-    type: "Task",
-    points: 5,
-  },
-];
+import "./Backlogs.css";
+import { BsFillBookmarkStarFill } from "react-icons/bs";
+import { IoMdCheckbox } from "react-icons/io";
+import { TbAlertSquareFilled } from "react-icons/tb";
+import { BsLightningChargeFill } from "react-icons/bs";
+import { FaEquals } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
-const Backlogs = ({ name, type, id, points, status }) => {
+import {
+  MdOutlineKeyboardDoubleArrowUp,
+  MdOutlineKeyboardArrowUp,
+  MdKeyboardDoubleArrowDown,
+} from "react-icons/md";
+const getTypeIcon = (type) => {
+  switch (type) {
+    case "Story":
+      return <BsFillBookmarkStarFill color="green" />;
+    case "Chore":
+      return <IoMdCheckbox color="#4db8ff" />;
+    case "Bug":
+      return <TbAlertSquareFilled color="#ff3300" />;
+    case "Epic":
+      return <BsLightningChargeFill color="#8f00b3" />;
+
+    default:
+      return null;
+  }
+};
+
+const getPriorityIcon = (priority) => {
+  switch (priority) {
+    case "Normal":
+      return <FaEquals color="green" />;
+    case "Critical":
+      return <MdOutlineKeyboardDoubleArrowUp color="red" />;
+    case "High":
+      return <MdOutlineKeyboardArrowUp color="orange" />;
+    case "Low":
+      return <MdKeyboardDoubleArrowDown color="blue" />;
+    default:
+      return null;
+  }
+};
+const Backlogs = ({ issues }) => {
+  const navigate = useNavigate();
+  const handleItemClick = (id) => {
+    navigate(`/card/${id}`);
+  };
   return (
-    <main className="content">
+    <div className="backlogs">
       <h2>Backlogs</h2>
-      <ul className="card-list">
-        {backlogData.map((card) => (
-          <li key={card.id}>
-            <Card
-              name={card.name}
-              type={card.type}
-              id={card.id}
-              status={card.status}
-              points={card.points}
-            />
-          </li>
+      <div className="backlog-list">
+        {issues.map((issue) => (
+          <div
+            key={issue.id}
+            className="backlog-item"
+            onClick={() => handleItemClick(issue.id)}
+          >
+            <div className="backlog-item-header">
+              <div className="backlog-item-id-icon">
+                <span className="backlog-item-icon">
+                  {getTypeIcon(issue.type)}
+                </span>
+                <span className="backlog-item-id">{issue.id}</span>
+              </div>
+              <div className="backlog-item-points-priority">
+                <span className="backlog-item-points">{issue.points}</span>
+                <span className="backlog-item-priority">
+                  {getPriorityIcon(issue.priority)}
+                </span>
+              </div>
+            </div>
+            <div className="backlog-item-title">{issue.name}</div>
+            <div className="backlog-item-details">
+              <span className="backlog-item-type">{issue.type}</span>
+              <span className="backlog-item-status">{issue.status}</span>
+            </div>
+          </div>
         ))}
-      </ul>
-    </main>
+      </div>
+    </div>
   );
 };
 

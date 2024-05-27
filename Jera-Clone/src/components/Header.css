@@ -3,6 +3,8 @@
   height: 50px;
   padding: 10px;
   position: fixed;
+  display: flex;
+  justify-content: space-between;
   top: 0; /* Positioned at the top of the viewport */
   left: 0; /* Aligned to the left edge */
   width: 100vw; /* Full viewport width */

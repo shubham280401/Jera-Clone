@@ -1,0 +1,60 @@
+.backlogs {
+  padding: 20px;
+}
+
+.backlog-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.backlog-item {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.backlog-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: bold;
+  position: relative;
+}
+
+.backlog-item-id-icon {
+  display: flex;
+  align-items: center;
+}
+
+.backlog-item-icon {
+  margin-right: 5px;
+}
+
+.backlog-item-id {
+  margin-right: 10px;
+}
+
+.backlog-item-points-priority {
+  display: flex;
+  align-items: center;
+}
+
+.backlog-item-points {
+  margin-right: 5px;
+}
+
+.backlog-item-title {
+  margin-top: 5px;
+}
+
+.backlog-item-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 5px;
+  font-size: 0.9em;
+  color: #555;
+}
+
+.backlog-item-type,
+.backlog-item-status {
+  margin-right: 10px;
+}
