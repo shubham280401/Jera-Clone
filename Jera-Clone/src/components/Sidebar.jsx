@@ -20,7 +20,6 @@ const Sidebar = () => {
         </li>
         <li>
           <NavLink
-            // style={{ display: "flex" }}
             to="/active-sprints"
             className={({ isActive }) =>
               isActive ? "active icon-placement" : "icon-placement"

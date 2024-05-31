@@ -1,7 +1,7 @@
-import { useMemo, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
+import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import Card from "./Card";
 import CardModal from "./CardModal";
-// import BasicModal from "./BasicModal";
 import "./Card.css";
 import "./Modal.css";
 
@@ -13,6 +13,7 @@ const ActiveSprints = ({ issues, setIssues }) => {
     setSelectedCard(card);
     setIsModalOpen(true);
   };
+
   const updateCard = (updatedCard) => {
     setIssues((prevIssues) =>
       prevIssues.map((issue) =>
@@ -20,6 +21,7 @@ const ActiveSprints = ({ issues, setIssues }) => {
       )
     );
   };
+
   useEffect(() => {
     const storedData = localStorage.getItem("activeSprintsData");
     if (storedData) {
@@ -33,32 +35,51 @@ const ActiveSprints = ({ issues, setIssues }) => {
     }
   }, [issues]);
 
-  const toDoCards = useMemo(
-    () => issues.filter((card) => card.status === "New"),
-    [issues]
-  );
-  const inProgressCards = useMemo(
-    () => issues.filter((card) => card.status === "In Progress"),
-    [issues]
-  );
-  const pausedCards = useMemo(
-    () => issues.filter((card) => card.status === "Paused"),
-    [issues]
-  );
-  const inReviewCards = useMemo(
-    () => issues.filter((card) => card.status === "In Review"),
-    [issues]
-  );
-  const doneCards = useMemo(
-    () => issues.filter((card) => card.status === "Done"),
-    [issues]
-  );
+  const onDragEnd = (result) => {
+    const { source, destination } = result;
+    if (!destination) return;
+
+    const sourceStatus = source.droppableId.replace(/-/g, " ");
+    const destStatus = destination.droppableId.replace(/-/g, " ");
+
+    if (source.droppableId === destination.droppableId) {
+      // Reordering within the same column
+      const cards = Array.from(
+        issues.filter((card) => card.status === sourceStatus)
+      );
+      const [movedCard] = cards.splice(source.index, 1);
+      cards.splice(destination.index, 0, movedCard);
+
+      const updatedIssues = issues.map((issue) => {
+        if (issue.id === movedCard.id) {
+          return { ...issue, index: destination.index };
+        }
+        return issue;
+      });
+
+      setIssues(updatedIssues);
+    } else {
+      // Moving to a different column
+      const sourceCards = Array.from(
+        issues.filter((card) => card.status === sourceStatus)
+      );
+      const [movedCard] = sourceCards.splice(source.index, 1);
+
+      const updatedIssues = issues.map((issue) => {
+        if (issue.id === movedCard.id) {
+          return { ...issue, status: destStatus };
+        }
+        return issue;
+      });
+
+      setIssues(updatedIssues);
+    }
+  };
 
   return (
     <main className="content">
       <div className="active-head">
         <h2>Active Sprints</h2>
-        {/* <BasicModal setIssues={setIssues} /> */}
       </div>
 
       <div className="task-status">
@@ -69,57 +90,56 @@ const ActiveSprints = ({ issues, setIssues }) => {
         <div className="task-status-style">DONE</div>
       </div>
 
-      <div className="card-containers">
-        <div className="card-container to-do">
-          {toDoCards.map((card) => (
-            <Card
-              key={card.id}
-              {...card}
-              onClick={() => handleCardClick(card)}
-            />
-          ))}
+      <DragDropContext onDragEnd={onDragEnd}>
+        <div className="card-containers">
+          {["New", "In Progress", "Paused", "In Review", "Done"].map(
+            (status) => (
+              <Droppable key={status} droppableId={status}>
+                {(provided) => (
+                  <div
+                    ref={provided.innerRef}
+                    {...provided.droppableProps}
+                    className={`card-container ${status
+                      .toLowerCase()
+                      .replace(/ /g, "-")}`}
+                    style={{ minHeight: 500 }}
+                  >
+                    {issues
+                      .filter((card) => card.status === status)
+                      .map((card, index) => (
+                        <Draggable
+                          key={card.id}
+                          draggableId={card.id}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                              style={{
+                                userSelect: "none",
+                                margin: "0 0 8px 0",
+                                minHeight: "50px",
+                                color: "black",
+                                ...provided.draggableProps.style,
+                              }}
+                              onClick={() => handleCardClick(card)}
+                            >
+                              <Card {...card} />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                    {provided.placeholder}
+                  </div>
+                )}
+              </Droppable>
+            )
+          )}
         </div>
+      </DragDropContext>
 
-        <div className="card-container in-progress">
-          {inProgressCards.map((card) => (
-            <Card
-              key={card.id}
-              {...card}
-              onClick={() => handleCardClick(card)}
-            />
-          ))}
-        </div>
-
-        <div className="card-container paused">
-          {pausedCards.map((card) => (
-            <Card
-              key={card.id}
-              {...card}
-              onClick={() => handleCardClick(card)}
-            />
-          ))}
-        </div>
-
-        <div className="card-container in-review">
-          {inReviewCards.map((card) => (
-            <Card
-              key={card.id}
-              {...card}
-              onClick={() => handleCardClick(card)}
-            />
-          ))}
-        </div>
-
-        <div className="card-container done">
-          {doneCards.map((card) => (
-            <Card
-              key={card.id}
-              {...card}
-              onClick={() => handleCardClick(card)}
-            />
-          ))}
-        </div>
-      </div>
       {selectedCard && (
         <CardModal
           isOpen={true}
@@ -131,5 +151,4 @@ const ActiveSprints = ({ issues, setIssues }) => {
     </main>
   );
 };
-
 export default ActiveSprints;
